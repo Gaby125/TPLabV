@@ -16,7 +16,7 @@ import com.example.gaby.tplabv.entidades.ViewHolderCategoria;
  * Created by Gaby on 21/09/2016.
  */
 public class ListaControlador implements View.OnClickListener
-{//sdfsdf
+{
     private ListaModelo modelo;
     private ListaVista vista;
     private Activity act;
