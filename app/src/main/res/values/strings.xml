@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Eso Quiero</string>
+    <string name="saludo">¡Hola!</string>
+    <string name="bienvenida">Bienvenidos a ESO QUIERO app.!</string>
+    <string name="bienvenida_sub">La aplicación que te ayudará a recordar.</string>
+    <string name="usuario_mail">Ingresa tu usuario o email</string>
+    <string name="clave">Ingresa tu clave.</string>
+    <string name="recordar">Recordarme</string>
+    <string name="registrar">Registrarse</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="sub_alta">ESO QUIERO app.!</string>
+    <string name="alta_nombre">Nombre</string>
+    <string name="alta_apellido">Apellido</string>
+    <string name="alta_form">Formulario de registro</string>
+    <string name="re_clave">Reingresá la clave</string>
+    <string name="cate_titulo">¡Nueva Categoría!</string>
+    <string name="cate_nombre">Nombre de la Categoría</string>
+    <string name="cate_texto">Texto para ingresar una breve descripción multilínea de la categoría.</string>
+    <string name="categoria">Categoría</string>
+    <string name="fav">Favorita</string>
+    <string name="crear">Crear</string>
+    <string name="lista">Lista de categorías</string>
+    <string name="agregar">+</string>
+    <string name="categorias">Categorías</string>
+    <string name="favs">Favoritos</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="modificar">Modificar</string>
+    <string name="cate_modif">Modificar Categoría</string>
+</resources>
