@@ -18,6 +18,11 @@ public class LoginControlador implements View.OnClickListener
     private LoginModelo modelo;
     private LoginVista vista;
     private Activity act;
+    private static Boolean inicioApp;
+    static
+    {
+        LoginControlador.inicioApp=false;
+    }
     public LoginControlador(LoginModelo modelo, Activity act)
     {
         this.modelo=modelo;
@@ -57,6 +62,17 @@ public class LoginControlador implements View.OnClickListener
                 }
                 act.finish();
                 break;
+        }
+    }
+    public void verificarInicio()
+    {
+        if(!LoginControlador.inicioApp)
+        {
+            LoginControlador.inicioApp=true;
+            Intent intentIng=new Intent(act, ListaActivity.class);
+            intentIng.putExtra("user", modelo.getUser());
+            act.startActivity(intentIng);
+            act.finish();
         }
     }
 }

@@ -26,4 +26,6 @@
     <string name="logout">Cerrar Sesión</string>
     <string name="modificar">Modificar</string>
     <string name="cate_modif">Modificar Categoría</string>
+    <string name="usuario">Ingresa tu usuario</string>
+    <string name="mail">Ingresa tu email</string>
 </resources>

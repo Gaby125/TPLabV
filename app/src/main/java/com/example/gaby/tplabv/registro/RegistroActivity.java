@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.example.gaby.tplabv.R;
 import com.example.gaby.tplabv.entidades.MenuActivity;
 
-public class RegistroActivity extends MenuActivity
+public class RegistroActivity extends AppCompatActivity
 {
 
     @Override
@@ -23,5 +23,17 @@ public class RegistroActivity extends MenuActivity
         RegistroControlador control=new RegistroControlador(modelo, this);
         RegistroVista vista=new RegistroVista(modelo, this, control);
         control.setVista(vista);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem)
+    {
+        switch(menuItem.getItemId())
+        {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
     }
 }

@@ -40,6 +40,7 @@ public class ListaControlador implements View.OnClickListener
                 break;
             default:
                 ViewHolderCategoria vhCategoria=new ViewHolderCategoria(v);
+                //vhCategoria.getAdapterPosition();
                 Intent intentCat=new Intent(act, CategoriaActivity.class);
                 intentCat.putExtra("nombre", vhCategoria.getTvNombre().getText());
                 intentCat.putExtra("descripcion", vhCategoria.getTvDescripcion().getText());

@@ -32,9 +32,9 @@ public class LoginVista
         this.txtPass=(EditText)act.findViewById(R.id.txtPass);
         this.chkRecordar=(CheckBox)act.findViewById(R.id.chkRecordar);
         this.chkRecordar.setChecked(false);
-        this.cargarPreferences(act);
+        this.cargarPreferences(act, control);
     }
-    private void cargarPreferences(Activity act)
+    private void cargarPreferences(Activity act, LoginControlador control)
     {
         SharedPreferences pref=act.getSharedPreferences("config", Context.MODE_PRIVATE);
         if(pref.getBoolean("recordar", false))
@@ -43,6 +43,7 @@ public class LoginVista
             this.txtPass.setText(pref.getString("pass", ""));
             this.chkRecordar.setChecked(true);
             this.actualizarModelo();
+            control.verificarInicio();
         }
     }
     public void actualizarModelo()

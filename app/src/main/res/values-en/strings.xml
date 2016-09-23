@@ -27,4 +27,6 @@
     <string name="logout">Logout</string>
     <string name="cate_modif">Modify Category</string>
     <string name="modificar">Modify</string>
+    <string name="mail">Enter your email</string>
+    <string name="usuario">Enter your username</string>
 </resources>
