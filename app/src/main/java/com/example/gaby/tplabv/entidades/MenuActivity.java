@@ -1,6 +1,8 @@
 package com.example.gaby.tplabv.entidades;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -36,6 +38,12 @@ public class MenuActivity extends AppCompatActivity
                 return true;
             case R.id.logout:
                 Intent i2=new Intent(this, LoginActivity.class);
+                i2.putExtra("Logout", true);
+                SharedPreferences pref=this.getSharedPreferences("config", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor=pref.edit();
+                editor.putBoolean("logueado", false);
+                editor.commit();
+                this.finishAffinity();
                 startActivity(i2);
                 this.finish();
                 return true;

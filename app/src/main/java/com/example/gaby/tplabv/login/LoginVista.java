@@ -43,7 +43,10 @@ public class LoginVista
             this.txtPass.setText(pref.getString("pass", ""));
             this.chkRecordar.setChecked(true);
             this.actualizarModelo();
-            control.verificarInicio();
+            if(pref.getBoolean("logueado", false))
+            {
+                control.verificarInicio();
+            }
         }
     }
     public void actualizarModelo()

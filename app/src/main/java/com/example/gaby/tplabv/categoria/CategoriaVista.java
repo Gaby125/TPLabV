@@ -53,4 +53,8 @@ public class CategoriaVista
         Categoria categoria=new Categoria(this.txtNombre.getText().toString(), this.txtDescripcion.getText().toString(), this.chkFav.isChecked());
         this.modelo.setCategoria(categoria);
     }
+    public boolean verificarCamposVacios()
+    {
+        return !(this.txtNombre.getText().toString().equals("") || this.txtDescripcion.getText().toString().equals(""));
+    }
 }

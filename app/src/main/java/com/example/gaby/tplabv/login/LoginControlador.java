@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 
 import com.example.gaby.tplabv.entidades.Dialogo;
@@ -29,11 +30,12 @@ public class LoginControlador implements View.OnClickListener
     private LoginModelo modelo;
     private LoginVista vista;
     private Activity act;
-    private static Boolean inicioApp;
-    static
+   // private static Boolean inicioApp;
+    /*static
     {
+        Log.d("inicioAppStatic", "Static");
         LoginControlador.inicioApp=false;
-    }
+    }*/
     public LoginControlador(LoginModelo modelo, Activity act)
     {
         this.modelo=modelo;
@@ -66,13 +68,13 @@ public class LoginControlador implements View.OnClickListener
                         editor.putBoolean("recordar", true);
                         editor.putString("user", modelo.getUser());
                         editor.putString("pass", modelo.getPass());
-                        editor.commit();
                     }
                     else
                     {
                         editor.putBoolean("recordar", false);
-                        editor.commit();
                     }
+                    editor.putBoolean("logueado", true);
+                    editor.commit();
                     act.finish();
                 }
                 else
@@ -85,9 +87,10 @@ public class LoginControlador implements View.OnClickListener
     }
     public void verificarInicio()
     {
-        if(!LoginControlador.inicioApp)
+        Intent intent=this.act.getIntent();
+        Bundle extras=intent.getExtras();
+        if(extras==null || !extras.getBoolean("Logout", false))
         {
-            LoginControlador.inicioApp=true;
             Intent intentIng=new Intent(act, ListaActivity.class);
             intentIng.putExtra("user", modelo.getUser());
             act.startActivity(intentIng);

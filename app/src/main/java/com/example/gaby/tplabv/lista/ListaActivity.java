@@ -50,6 +50,12 @@ public class ListaActivity extends MenuActivity
                 return true;
             case R.id.logout:
                 Intent i2=new Intent(this, LoginActivity.class);
+                i2.putExtra("Logout", true);
+                SharedPreferences pref=this.getSharedPreferences("config", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor=pref.edit();
+                editor.putBoolean("logueado", false);
+                editor.commit();
+                this.finishAffinity();
                 startActivity(i2);
                 this.finish();
                 return true;

@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/background">
 
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:id="@+id/imageView2"
-        android:src="@drawable/smile_icono"
+        android:src="@drawable/smile"
         android:layout_x="124dp"
         android:layout_y="-13dp"
         android:layout_alignParentTop="true"

@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".lista.ListaActivity">
+    tools:context=".lista.ListaActivity"
+    android:background="@drawable/background">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCategoria"
@@ -19,10 +20,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnAgregar"
-        android:layout_below="@+id/rvCategoria"
-        android:layout_alignEnd="@+id/rvCategoria"
         android:text="@string/agregar"
         android:background="#fa18c5"
-        android:textColor="#31e121" />
+        android:textColor="#31e121"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>
