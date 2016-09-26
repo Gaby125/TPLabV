@@ -28,4 +28,7 @@
     <string name="cate_modif">Modificar Categoría</string>
     <string name="usuario">Ingresa tu usuario</string>
     <string name="mail">Ingresa tu email</string>
+    <string name="error">Error</string>
+    <string name="msj_vacio">No pueden haber campos vacíos.</string>
+    <string name="aceptar">Aceptar</string>
 </resources>

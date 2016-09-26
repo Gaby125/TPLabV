@@ -34,7 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtDescripcion"
-        android:hint="@string/cate_texto"/>
+        android:hint="@string/cate_texto"
+        android:maxLines="2" />
 
     <RelativeLayout
         android:orientation="horizontal"

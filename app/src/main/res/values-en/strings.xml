@@ -29,4 +29,7 @@
     <string name="modificar">Modify</string>
     <string name="mail">Enter your email</string>
     <string name="usuario">Enter your username</string>
+    <string name="error">Error</string>
+    <string name="msj_vacio">Empty entries are not allowed.</string>
+    <string name="aceptar">OK</string>
 </resources>

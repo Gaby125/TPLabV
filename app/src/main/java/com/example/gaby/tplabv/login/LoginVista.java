@@ -52,4 +52,8 @@ public class LoginVista
         this.modelo.setPass(this.txtPass.getText().toString());
         this.modelo.setRecordar(chkRecordar.isChecked());
     }
+    public boolean verificarCamposVacios()
+    {
+        return !(this.txtUser.getText().toString().equals("") || this.txtPass.getText().toString().equals(""));
+    }
 }

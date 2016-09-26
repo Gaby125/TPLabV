@@ -4,11 +4,22 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
+import com.example.gaby.tplabv.entidades.Dialogo;
 import com.example.gaby.tplabv.lista.ListaActivity;
 import com.example.gaby.tplabv.R;
 import com.example.gaby.tplabv.registro.RegistroActivity;
+
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Created by Gaby on 21/09/2016.
@@ -42,25 +53,33 @@ public class LoginControlador implements View.OnClickListener
                 act.startActivity(intentReg);
                 break;
             case R.id.btnIngresar:
-                this.vista.actualizarModelo();
-                Intent intentIng=new Intent(act, ListaActivity.class);
-                intentIng.putExtra("user", modelo.getUser());
-                act.startActivity(intentIng);
-                SharedPreferences pref=act.getSharedPreferences("config", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor=pref.edit();
-                if(modelo.getRecordar())
+                if(vista.verificarCamposVacios())
                 {
-                    editor.putBoolean("recordar", true);
-                    editor.putString("user", modelo.getUser());
-                    editor.putString("pass", modelo.getPass());
-                    editor.commit();
+                    this.vista.actualizarModelo();
+                    Intent intentIng=new Intent(act, ListaActivity.class);
+                    intentIng.putExtra("user", modelo.getUser());
+                    act.startActivity(intentIng);
+                    SharedPreferences pref=act.getSharedPreferences("config", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor=pref.edit();
+                    if(modelo.getRecordar())
+                    {
+                        editor.putBoolean("recordar", true);
+                        editor.putString("user", modelo.getUser());
+                        editor.putString("pass", modelo.getPass());
+                        editor.commit();
+                    }
+                    else
+                    {
+                        editor.putBoolean("recordar", false);
+                        editor.commit();
+                    }
+                    act.finish();
                 }
                 else
                 {
-                    editor.putBoolean("recordar", false);
-                    editor.commit();
+                    Dialogo dialogo=new Dialogo();
+                    dialogo.show(((FragmentActivity)act).getSupportFragmentManager(), "Login");
                 }
-                act.finish();
                 break;
         }
     }
