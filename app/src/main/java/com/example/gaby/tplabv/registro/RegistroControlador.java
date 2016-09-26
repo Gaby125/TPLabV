@@ -1,9 +1,12 @@
 package com.example.gaby.tplabv.registro;
 
 import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import com.example.gaby.tplabv.R;
+import com.example.gaby.tplabv.entidades.Dialogo;
 import com.example.gaby.tplabv.login.LoginActivity;
 
 /**
@@ -29,8 +32,32 @@ public class RegistroControlador implements View.OnClickListener
         switch(v.getId())
         {
             case R.id.btnAlta:
-                act.finish();
+                if(this.vista.verificarCamposVacios())
+                {
+                    if(this.vista.verificarContraseña())
+                    {
+                        this.vista.actualizarModelo();
+                        act.finish();
+                    }
+                    else
+                    {
+                        this.generarDialogo(act.getString(R.string.error), act.getString(R.string.msj_repass));
+                    }
+                }
+                else
+                {
+                    this.generarDialogo(act.getString(R.string.error), act.getString(R.string.msj_vacio));
+                }
                 break;
         }
+    }
+    private void generarDialogo(String titulo, String mensaje)
+    {
+        Dialogo dialogo=new Dialogo();
+        Bundle args=new Bundle();
+        args.putString("titulo", titulo);
+        args.putString("mensaje", mensaje);
+        dialogo.setArguments(args);
+        dialogo.show(((FragmentActivity)act).getSupportFragmentManager(), "Registro");
     }
 }

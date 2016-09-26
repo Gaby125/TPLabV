@@ -80,6 +80,10 @@ public class LoginControlador implements View.OnClickListener
                 else
                 {
                     Dialogo dialogo=new Dialogo();
+                    Bundle args=new Bundle();
+                    args.putString("titulo", act.getString(R.string.error));
+                    args.putString("mensaje", act.getString(R.string.msj_vacio));
+                    dialogo.setArguments(args);
                     dialogo.show(((FragmentActivity)act).getSupportFragmentManager(), "Login");
                 }
                 break;

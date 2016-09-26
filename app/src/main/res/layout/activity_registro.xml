@@ -44,7 +44,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3"
+        android:id="@+id/txtNombre"
         android:hint="@string/alta_nombre"
         android:layout_gravity="center_horizontal"
         android:textSize="12dp"
@@ -53,7 +53,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText4"
+        android:id="@+id/txtApellido"
         android:hint="@string/alta_apellido"
         android:layout_gravity="center_horizontal"
         android:textSize="12dp"
@@ -62,7 +62,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText5"
+        android:id="@+id/txtUser"
         android:hint="@string/usuario"
         android:layout_gravity="center_horizontal"
         android:textSize="12dp"
@@ -71,7 +71,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/txtMail"
         android:hint="@string/mail"
         android:layout_gravity="center_horizontal"
         android:textSize="12dp"
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText6"
+        android:id="@+id/txtPass"
         android:hint="@string/clave"
         android:layout_gravity="center_horizontal"
         android:textSize="12dp"
@@ -93,7 +93,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText7"
+        android:id="@+id/txtRePass"
         android:hint="@string/re_clave"
         android:layout_gravity="center_horizontal"
         android:textSize="12dp"

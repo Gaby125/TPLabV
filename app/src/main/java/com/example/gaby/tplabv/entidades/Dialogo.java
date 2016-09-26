@@ -13,17 +13,13 @@ import com.example.gaby.tplabv.R;
  */
 public class Dialogo extends DialogFragment
 {
-    private String titulo;
-    private String mensaje;
-    public Dialogo()
-    {
-    }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.error);
-        builder.setMessage(R.string.msj_vacio);
+        Bundle args=this.getArguments();
+        builder.setTitle(args.get("titulo").toString());
+        builder.setMessage(args.get("mensaje").toString());
         builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener()
         {
             @Override

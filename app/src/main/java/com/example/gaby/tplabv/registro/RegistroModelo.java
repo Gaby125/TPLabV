@@ -8,6 +8,7 @@ public class RegistroModelo
     private String nombre;
     private String apellido;
     private String user;
+    private String mail;
     private String pass;
     private String rePass;
     public RegistroModelo()
@@ -41,6 +42,16 @@ public class RegistroModelo
     public void setUser(String user)
     {
         this.user = user;
+    }
+
+    public String getMail()
+    {
+        return mail;
+    }
+
+    public void setMail(String mail)
+    {
+        this.mail = mail;
     }
 
     public String getPass()

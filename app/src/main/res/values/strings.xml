@@ -29,6 +29,7 @@
     <string name="usuario">Ingresa tu usuario</string>
     <string name="mail">Ingresa tu email</string>
     <string name="error">Error</string>
-    <string name="msj_vacio">No pueden haber campos vacíos.</string>
+    <string name="msj_vacio">No puede haber campos vacíos.</string>
     <string name="aceptar">Aceptar</string>
+    <string name="msj_repass">La contraseña no coincide con su copia.</string>
 </resources>

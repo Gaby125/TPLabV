@@ -2,6 +2,7 @@ package com.example.gaby.tplabv.categoria;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
@@ -47,7 +48,11 @@ public class CategoriaControlador implements View.OnClickListener
                 else
                 {
                     Dialogo dialogo=new Dialogo();
-                    dialogo.show(((FragmentActivity)act).getSupportFragmentManager(), "Login");
+                    Bundle args=new Bundle();
+                    args.putString("titulo", act.getString(R.string.error));
+                    args.putString("mensaje", act.getString(R.string.msj_vacio));
+                    dialogo.setArguments(args);
+                    dialogo.show(((FragmentActivity)act).getSupportFragmentManager(), "Categoria");
                 }
         }
     }
