@@ -12,7 +12,7 @@ import com.example.gaby.tplabv.lista.ListaModelo;
  * Created by Gaby on 21/09/2016.
  */
 public class Adaptador extends RecyclerView.Adapter<ViewHolderCategoria>
-{
+{//Esta clase no está siendo utilizada por el momento, debido a que la clase "ListaVista" cumple el rol de Adapter sobre el ReciclerView (del Activity Lista)
     private ListaModelo modelo;
     public Adaptador(ListaModelo modelo)
     {

@@ -30,12 +30,6 @@ public class LoginControlador implements View.OnClickListener
     private LoginModelo modelo;
     private LoginVista vista;
     private Activity act;
-   // private static Boolean inicioApp;
-    /*static
-    {
-        Log.d("inicioAppStatic", "Static");
-        LoginControlador.inicioApp=false;
-    }*/
     public LoginControlador(LoginModelo modelo, Activity act)
     {
         this.modelo=modelo;

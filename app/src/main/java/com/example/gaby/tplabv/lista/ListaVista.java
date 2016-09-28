@@ -28,7 +28,7 @@ public class ListaVista extends RecyclerView.Adapter<ViewHolderCategoria>
         this.modelo=modelo;
         this.control=control;
         this.rvCategoria=(RecyclerView)act.findViewById(R.id.rvCategoria);
-        Adaptador adaptador=new Adaptador(this.modelo);
+        //Adaptador adaptador=new Adaptador(this.modelo);
         this.rvCategoria.setAdapter(this);
         this.rvCategoria.setLayoutManager(new LinearLayoutManager(act));
         this.btnAgregar=(Button)act.findViewById(R.id.btnAgregar);

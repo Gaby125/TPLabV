@@ -21,7 +21,7 @@ public class Dialogo extends DialogFragment
         builder.setTitle(args.get("titulo").toString());
         builder.setMessage(args.get("mensaje").toString());
         builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener()
-        {
+        {//Utilizo un listener anónimo porque no necesito ejecutar ninguna acción, ya que este diálogo es solamente una advertencia con una única opción.
             @Override
             public void onClick(DialogInterface dialog, int which)
             {

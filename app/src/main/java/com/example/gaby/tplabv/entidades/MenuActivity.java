@@ -34,7 +34,7 @@ public class MenuActivity extends AppCompatActivity
                 startActivity(i);
                 return true;
             case R.id.favoritos:
-                Log.d("ClickMenu", "Favortios");
+                Log.d("ClickMenu", this.getString(R.string.favs));
                 return true;
             case R.id.logout:
                 Intent i2=new Intent(this, LoginActivity.class);

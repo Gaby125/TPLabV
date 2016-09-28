@@ -46,7 +46,7 @@ public class ListaActivity extends MenuActivity
         switch(menuItem.getItemId())
         {
             case R.id.favoritos:
-                Log.d("ClickMenu", "Favortios");
+                Log.d("ClickMenu", this.getString(R.string.favs));
                 return true;
             case R.id.logout:
                 Intent i2=new Intent(this, LoginActivity.class);
