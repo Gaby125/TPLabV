@@ -32,4 +32,6 @@
     <string name="msj_vacio">No puede haber campos vacíos.</string>
     <string name="aceptar">Aceptar</string>
     <string name="msj_repass">La contraseña no coincide con su copia.</string>
+    <string name="msj_login">El usuario o contraseña son incorrectos.</string>
+    <string name="respuesta">Mensaje del servidor</string>
 </resources>

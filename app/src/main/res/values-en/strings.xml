@@ -33,4 +33,6 @@
     <string name="msj_vacio">Empty entries are not allowed.</string>
     <string name="aceptar">OK</string>
     <string name="msj_repass">The password does not match its copy.</string>
+    <string name="msj_login">Invalid username or password.</string>
+    <string name="respuesta">Server message</string>
 </resources>

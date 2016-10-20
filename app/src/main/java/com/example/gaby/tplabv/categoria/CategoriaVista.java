@@ -32,13 +32,13 @@ public class CategoriaVista
         this.btnCrear=(Button)act.findViewById(R.id.btnCrear);
         this.btnCrear.setOnClickListener(control);
         this.tvTitulo=(TextView)act.findViewById(R.id.tvTitulo);
-        this.completarCampos(act);
+        this.completarCampos(act, control);
     }
-    private void completarCampos(Activity act)
+    private void completarCampos(Activity act, CategoriaControlador control)
     {
         Intent intent=act.getIntent();
         Bundle extras=intent.getExtras();
-        if(extras!=null)
+        if(!extras.getString("nombre", "").equals(""))
         {
             this.btnCrear.setText(R.string.modificar);
             this.tvTitulo.setText(R.string.cate_modif);
@@ -46,6 +46,7 @@ public class CategoriaVista
             this.txtDescripcion.setText(extras.getString("descripcion", ""));
             this.chkFav.setChecked(extras.getBoolean("favorita", false));
             this.modelo.setIndice(extras.getInt("indice", 0));
+            control.setModificacion(true);
         }
     }
     public void actualizarModelo()

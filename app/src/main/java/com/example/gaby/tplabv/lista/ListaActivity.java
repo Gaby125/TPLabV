@@ -30,12 +30,8 @@ public class ListaActivity extends MenuActivity
         actionBar.setTitle(R.string.lista);
         actionBar.setDisplayHomeAsUpEnabled(true);
         ListaModelo modelo=new ListaModelo();
-        ArrayList<Categoria> categorias=new ArrayList<Categoria>();
-        categorias.add(new Categoria("Categoría 1", "cat1", true));
-        categorias.add(new Categoria("Categoría 2", "cat2", false));
-        categorias.add(new Categoria("Categoría 3", "cat3", true));
-        modelo.setCategorias(categorias);
         ListaControlador control=new ListaControlador(modelo, this);
+        control.cargarLista();
         ListaVista vista=new ListaVista(modelo, this, control);
         control.setVista(vista);
         this.controlador=control;

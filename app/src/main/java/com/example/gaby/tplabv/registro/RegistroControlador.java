@@ -1,18 +1,21 @@
 package com.example.gaby.tplabv.registro;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import com.example.gaby.tplabv.R;
 import com.example.gaby.tplabv.entidades.Dialogo;
-import com.example.gaby.tplabv.login.LoginActivity;
+import com.example.gaby.tplabv.entidades.Usuario;
 
 /**
  * Created by Gaby on 21/09/2016.
  */
-public class RegistroControlador implements View.OnClickListener
+public class RegistroControlador implements View.OnClickListener, Handler.Callback
 {
     private RegistroModelo modelo;
     private RegistroVista vista;
@@ -37,7 +40,9 @@ public class RegistroControlador implements View.OnClickListener
                     if(this.vista.verificarContraseña())
                     {
                         this.vista.actualizarModelo();
-                        act.finish();
+                        Usuario usuario=new Usuario(modelo.getNombre(), modelo.getApellido(), modelo.getUser(), modelo.getMail(), modelo.getPass());
+                        HiloRegistro hilo=new HiloRegistro(usuario, new Handler(this));
+                        hilo.start();
                     }
                     else
                     {
@@ -59,5 +64,15 @@ public class RegistroControlador implements View.OnClickListener
         args.putString("mensaje", mensaje);
         dialogo.setArguments(args);
         dialogo.show(((FragmentActivity)act).getSupportFragmentManager(), "Registro");
+    }
+
+    @Override
+    public boolean handleMessage(Message msg)
+    {
+        Intent intent=new Intent();
+        intent.putExtra("mensaje", msg.obj.toString());
+        act.setResult(1, intent);
+        act.finish();
+        return true;
     }
 }

@@ -40,12 +40,11 @@ public class LoginVista
         if(pref.getBoolean("recordar", false))
         {
             this.txtUser.setText(pref.getString("user", ""));
-            this.txtPass.setText(pref.getString("pass", ""));
             this.chkRecordar.setChecked(true);
             this.actualizarModelo();
             if(pref.getBoolean("logueado", false))
             {
-                control.verificarInicio();
+                control.verificarInicio(pref);
             }
         }
     }

@@ -3,6 +3,8 @@ package com.example.gaby.tplabv.lista;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -12,10 +14,12 @@ import com.example.gaby.tplabv.categoria.CategoriaActivity;
 import com.example.gaby.tplabv.entidades.Categoria;
 import com.example.gaby.tplabv.entidades.ViewHolderCategoria;
 
+import java.util.ArrayList;
+
 /**
  * Created by Gaby on 21/09/2016.
  */
-public class ListaControlador implements View.OnClickListener
+public class ListaControlador implements View.OnClickListener, Handler.Callback
 {
     private ListaModelo modelo;
     private ListaVista vista;
@@ -36,6 +40,7 @@ public class ListaControlador implements View.OnClickListener
         {
             case R.id.btnAgregar:
                 Intent intent=new Intent(act, CategoriaActivity.class);
+                intent.putExtra("key", this.act.getIntent().getExtras().getString("key", ""));
                 act.startActivityForResult(intent, 0);
                 break;
             default:
@@ -71,5 +76,22 @@ public class ListaControlador implements View.OnClickListener
             }*/
             this.vista.notifyDataSetChanged();
         }
+    }
+    public void cargarLista()
+    {
+        ArrayList<Categoria> categorias=new ArrayList<Categoria>();
+        categorias.add(new Categoria("Categoría 1", "cat1", true));
+        modelo.setCategorias(categorias);//cargo una lista auxiliar para que no haga referencia a nulo al cargar el recycler view
+        HiloLista hilo=new HiloLista(this.act.getIntent().getExtras().getString("key", ""), new Handler(this));
+        hilo.start();
+    }
+
+    @Override
+    public boolean handleMessage(Message msg)
+    {
+        ArrayList<Categoria> categorias=(ArrayList<Categoria>)msg.obj;
+        this.modelo.setCategorias(categorias);
+        this.vista.notifyDataSetChanged();
+        return true;
     }
 }
