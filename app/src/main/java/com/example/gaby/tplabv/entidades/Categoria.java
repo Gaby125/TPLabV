@@ -15,14 +15,16 @@ public class Categoria
     private String nombre;
     private String descripcion;
     private Boolean fav;
+    private String foto;
     public Categoria()
     {
     }
-    public Categoria(String nombre, String descripcion, Boolean fav)
+    public Categoria(String nombre, String descripcion, Boolean fav, String foto)
     {
         this.nombre=nombre;
         this.descripcion=descripcion;
         this.fav=fav;
+        this.foto=foto;
     }
 
     public String getNombre()
@@ -55,6 +57,16 @@ public class Categoria
         this.fav = fav;
     }
 
+    public String getFoto()
+    {
+        return foto;
+    }
+
+    public void setFoto(String foto)
+    {
+        this.foto = foto;
+    }
+
     public static List<Categoria> obtenerCategoriasJSON(String json)throws JSONException
     {
         List<Categoria> categorias=new ArrayList<Categoria>();
@@ -68,6 +80,7 @@ public class Categoria
                 JSONObject personaJson=arrayPersonas.getJSONObject(i);
                 categoria.nombre=personaJson.getString("titulo");
                 categoria.descripcion=personaJson.getString("desc");
+                categoria.foto=personaJson.getString("url_foto");
                 categoria.fav=false;
                 categorias.add(categoria);
             }

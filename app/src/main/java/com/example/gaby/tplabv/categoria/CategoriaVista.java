@@ -2,11 +2,14 @@ package com.example.gaby.tplabv.categoria;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gaby.tplabv.R;
@@ -23,6 +26,8 @@ public class CategoriaVista
     private CheckBox chkFav;
     private Button btnCrear;
     private TextView tvTitulo;
+    private ImageButton btnCamara;
+    private ImageView imgCamara;
     public CategoriaVista(CategoriaModelo modelo, Activity act, CategoriaControlador control)
     {
         this.modelo=modelo;
@@ -32,6 +37,9 @@ public class CategoriaVista
         this.btnCrear=(Button)act.findViewById(R.id.btnCrear);
         this.btnCrear.setOnClickListener(control);
         this.tvTitulo=(TextView)act.findViewById(R.id.tvTitulo);
+        this.btnCamara=(ImageButton)act.findViewById(R.id.btnCamara);
+        this.btnCamara.setOnClickListener(control);
+        this.imgCamara=(ImageView)act.findViewById(R.id.imgCamara);
         this.completarCampos(act, control);
     }
     private void completarCampos(Activity act, CategoriaControlador control)
@@ -45,17 +53,35 @@ public class CategoriaVista
             this.txtNombre.setText(extras.getString("nombre", ""));
             this.txtDescripcion.setText(extras.getString("descripcion", ""));
             this.chkFav.setChecked(extras.getBoolean("favorita", false));
+            String foto=extras.getString("foto", null);
+            if(foto!=null)
+            {
+                control.setUri(Uri.parse(foto));
+                this.imgCamara.setImageURI(Uri.parse(foto));
+            }
+            else
+            {
+                control.setUri(null);
+            }
             this.modelo.setIndice(extras.getInt("indice", 0));
             control.setModificacion(true);
         }
     }
-    public void actualizarModelo()
+    public void actualizarModelo(Uri uri)
     {
-        Categoria categoria=new Categoria(this.txtNombre.getText().toString(), this.txtDescripcion.getText().toString(), this.chkFav.isChecked());
+        Categoria categoria=new Categoria(this.txtNombre.getText().toString(), this.txtDescripcion.getText().toString(), this.chkFav.isChecked(), null);
+        if(uri!=null)
+        {
+            categoria.setFoto(uri.toString());
+        }
         this.modelo.setCategoria(categoria);
     }
     public boolean verificarCamposVacios()
     {
         return !(this.txtNombre.getText().toString().equals("") || this.txtDescripcion.getText().toString().equals(""));
+    }
+    public void actualizarImagen(Uri uri)
+    {
+        this.imgCamara.setImageURI(uri);
     }
 }

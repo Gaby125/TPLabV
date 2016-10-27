@@ -50,6 +50,10 @@ public class ListaControlador implements View.OnClickListener, Handler.Callback
                 intentCat.putExtra("nombre", vhCategoria.getTvNombre().getText());
                 intentCat.putExtra("descripcion", vhCategoria.getTvDescripcion().getText());
                 intentCat.putExtra("favorita", vhCategoria.getChkFav().isChecked());
+                if(vhCategoria.getImgFoto().getTag()!=null)
+                {
+                    intentCat.putExtra("foto", vhCategoria.getImgFoto().getTag().toString());
+                }
                 intentCat.putExtra("indice", Integer.parseInt(vhCategoria.getTvIndice().getText().toString()));
                 act.startActivityForResult(intentCat, 0);
                 break;
@@ -61,7 +65,7 @@ public class ListaControlador implements View.OnClickListener, Handler.Callback
         {
             Bundle extras=datos.getExtras();
             Integer indice=extras.getInt("indice", -1);
-            Categoria categoria=new Categoria(extras.getString("nombre", "Por defecto"), extras.getString("descripcion", "Por defecto"), extras.getBoolean("favorita", false));
+            Categoria categoria=new Categoria(extras.getString("nombre", "Por defecto"), extras.getString("descripcion", "Por defecto"), extras.getBoolean("favorita", false), extras.getString("foto", null));
             if(indice==-1)
             {
                 this.modelo.getCategorias().add(categoria);
@@ -80,7 +84,7 @@ public class ListaControlador implements View.OnClickListener, Handler.Callback
     public void cargarLista()
     {
         ArrayList<Categoria> categorias=new ArrayList<Categoria>();
-        categorias.add(new Categoria("Categoría 1", "cat1", true));
+        categorias.add(new Categoria("Categoría 1", "cat1", true, null));
         modelo.setCategorias(categorias);//cargo una lista auxiliar para que no haga referencia a nulo al cargar el recycler view
         HiloLista hilo=new HiloLista(this.act.getIntent().getExtras().getString("key", ""), new Handler(this));
         hilo.start();

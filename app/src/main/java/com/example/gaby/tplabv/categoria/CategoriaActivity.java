@@ -1,5 +1,6 @@
 package com.example.gaby.tplabv.categoria;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import com.example.gaby.tplabv.login.LoginActivity;
 
 public class CategoriaActivity extends MenuActivity
 {
+    private CategoriaControlador control;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,8 +25,16 @@ public class CategoriaActivity extends MenuActivity
         actionBar.setTitle(R.string.categoria);
         actionBar.setDisplayHomeAsUpEnabled(true);
         CategoriaModelo modelo=new CategoriaModelo();
-        CategoriaControlador control=new CategoriaControlador(modelo, this);
+        this.control=new CategoriaControlador(modelo, this);
         CategoriaVista vista=new CategoriaVista(modelo, this, control);
         control.setVista(vista);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if(resultCode==Activity.RESULT_OK)
+        {
+            this.control.modificarImagen();
+        }
     }
 }

@@ -1,6 +1,8 @@
 package com.example.gaby.tplabv.lista;
 
 import android.app.Activity;
+import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,7 +24,7 @@ public class ListaVista extends RecyclerView.Adapter<ViewHolderCategoria>
     private ListaModelo modelo;
     private ListaControlador control;
     private RecyclerView rvCategoria;
-    private Button btnAgregar;
+    private FloatingActionButton btnAgregar;
     public ListaVista(ListaModelo modelo, Activity act, ListaControlador control)
     {
         this.modelo=modelo;
@@ -31,7 +33,7 @@ public class ListaVista extends RecyclerView.Adapter<ViewHolderCategoria>
         //Adaptador adaptador=new Adaptador(this.modelo);
         this.rvCategoria.setAdapter(this);
         this.rvCategoria.setLayoutManager(new LinearLayoutManager(act));
-        this.btnAgregar=(Button)act.findViewById(R.id.btnAgregar);
+        this.btnAgregar=(FloatingActionButton)act.findViewById(R.id.btnAgregar);
         this.btnAgregar.setOnClickListener(control);
     }
     public ViewHolderCategoria onCreateViewHolder(ViewGroup parent, int viewType)
@@ -49,6 +51,11 @@ public class ListaVista extends RecyclerView.Adapter<ViewHolderCategoria>
         holder.getTvNombre().setText(categoria.getNombre());
         holder.getTvDescripcion().setText(categoria.getDescripcion());
         holder.getChkFav().setChecked(categoria.getFav());
+        if(categoria.getFoto()!=null && !categoria.getFoto().equals("null"))
+        {
+            holder.getImgFoto().setImageURI(Uri.parse(categoria.getFoto()));
+            holder.getImgFoto().setTag(categoria.getFoto());
+        }
         holder.getTvIndice().setText(String.valueOf(position));
         holder.setIndice(position);
     }

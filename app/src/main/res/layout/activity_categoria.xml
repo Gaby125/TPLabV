@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtDescripcion"
         android:hint="@string/cate_texto"
-        android:maxLines="2" />
+        android:maxLines="1" />
 
     <RelativeLayout
         android:orientation="horizontal"
@@ -65,13 +65,19 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true" />
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/imageView4"
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCamara"
             android:src="@android:drawable/ic_menu_camera"
-            android:layout_marginBottom="60dp"
-            android:layout_above="@+id/btnCrear"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgCamara"
+            android:layout_below="@+id/btnCamara"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
