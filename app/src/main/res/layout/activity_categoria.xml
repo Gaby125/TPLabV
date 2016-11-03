@@ -58,7 +58,6 @@
             android:text="@string/crear"
             android:id="@+id/btnCrear"
             android:background="#a5d3fe"
-            android:layout_marginLeft="180dp"
             android:textAllCaps="false"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="74dp"
@@ -78,7 +77,19 @@
             android:layout_height="wrap_content"
             android:id="@+id/imgCamara"
             android:layout_below="@+id/btnCamara"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/btnCrear" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eliminar"
+            android:background="#ff0000"
+            android:id="@+id/btnEliminar"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            android:layout_below="@+id/imgCamara"
+            android:layout_toStartOf="@+id/btnCrear" />
 
     </RelativeLayout>
 

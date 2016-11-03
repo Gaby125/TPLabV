@@ -48,7 +48,7 @@ public class AdministradorHttp
         }
     }
 
-    public byte[] enviarInformacion(String cadenaUrl, Uri.Builder postParams, String key) throws IOException
+    public byte[] enviarInformacion(String cadenaUrl, Uri.Builder postParams, String key, String metodo) throws IOException
     {
         URL url=new URL(cadenaUrl);
         HttpURLConnection conexion=(HttpURLConnection)url.openConnection();
@@ -58,15 +58,23 @@ public class AdministradorHttp
             conexion.setRequestProperty("AUTHORIZATION", key);
         }
         conexion.setConnectTimeout(10000);
-        conexion.setRequestMethod("POST");
-        conexion.setDoOutput(true);
-        String query = postParams.build().getEncodedQuery();
-        OutputStream os = conexion.getOutputStream();
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os,"UTF8"));
-        writer.write(query);
-        writer.flush();
-        writer.close();
-        os.close();
+        conexion.setRequestMethod(metodo);
+        if(!metodo.equals("DELETE"))
+        {
+            conexion.setDoOutput(true);
+            String query = postParams.build().getEncodedQuery();
+            OutputStream os = conexion.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os,"UTF8"));
+            writer.write(query);
+            writer.flush();
+            writer.close();
+            os.close();
+        }
+        else
+        {
+            conexion.setDoInput(true);
+            conexion.connect();
+        }
         int response = conexion.getResponseCode();
         if(response==200 || response==201)
         {

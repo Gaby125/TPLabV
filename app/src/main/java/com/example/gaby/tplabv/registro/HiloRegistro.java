@@ -32,7 +32,7 @@ public class HiloRegistro extends Thread
             parametros.appendQueryParameter("usuario", this.usuario.getUser());
             parametros.appendQueryParameter("email", this.usuario.getMail());
             parametros.appendQueryParameter("password", this.usuario.getPass());
-            byte[] datos=adm.enviarInformacion("http://lkdml.myq-see.com/register", parametros, null);
+            byte[] datos=adm.enviarInformacion("http://lkdml.myq-see.com/register", parametros, null, "POST");
             String json=new String(datos, "UTF-8");
             Message msg=new Message();
             msg.obj= Usuario.obtenerMensaje(json);

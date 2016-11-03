@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class CategoriaVista
     private TextView tvTitulo;
     private ImageButton btnCamara;
     private ImageView imgCamara;
+    private Button btnEliminar;
     public CategoriaVista(CategoriaModelo modelo, Activity act, CategoriaControlador control)
     {
         this.modelo=modelo;
@@ -40,6 +42,8 @@ public class CategoriaVista
         this.btnCamara=(ImageButton)act.findViewById(R.id.btnCamara);
         this.btnCamara.setOnClickListener(control);
         this.imgCamara=(ImageView)act.findViewById(R.id.imgCamara);
+        this.btnEliminar=(Button)act.findViewById(R.id.btnEliminar);
+        this.btnEliminar.setOnClickListener(control);
         this.completarCampos(act, control);
     }
     private void completarCampos(Activity act, CategoriaControlador control)
@@ -50,6 +54,8 @@ public class CategoriaVista
         {
             this.btnCrear.setText(R.string.modificar);
             this.tvTitulo.setText(R.string.cate_modif);
+            this.btnEliminar.setVisibility(View.VISIBLE);
+            control.setId(extras.getInt("id", -1));
             this.txtNombre.setText(extras.getString("nombre", ""));
             this.txtDescripcion.setText(extras.getString("descripcion", ""));
             this.chkFav.setChecked(extras.getBoolean("favorita", false));
@@ -64,12 +70,12 @@ public class CategoriaVista
                 control.setUri(null);
             }
             this.modelo.setIndice(extras.getInt("indice", 0));
-            control.setModificacion(true);
+            control.setTipo("modificacion");
         }
     }
-    public void actualizarModelo(Uri uri)
+    public void actualizarModelo(Uri uri, Integer id)
     {
-        Categoria categoria=new Categoria(this.txtNombre.getText().toString(), this.txtDescripcion.getText().toString(), this.chkFav.isChecked(), null);
+        Categoria categoria=new Categoria(this.txtNombre.getText().toString(), this.txtDescripcion.getText().toString(), this.chkFav.isChecked(), null, id);
         if(uri!=null)
         {
             categoria.setFoto(uri.toString());

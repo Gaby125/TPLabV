@@ -16,15 +16,17 @@ public class Categoria
     private String descripcion;
     private Boolean fav;
     private String foto;
+    private Integer id;
     public Categoria()
     {
     }
-    public Categoria(String nombre, String descripcion, Boolean fav, String foto)
+    public Categoria(String nombre, String descripcion, Boolean fav, String foto, Integer id)
     {
         this.nombre=nombre;
         this.descripcion=descripcion;
         this.fav=fav;
         this.foto=foto;
+        this.id=id;
     }
 
     public String getNombre()
@@ -67,6 +69,16 @@ public class Categoria
         this.foto = foto;
     }
 
+    public Integer getId()
+    {
+        return id;
+    }
+
+    public void setId(Integer id)
+    {
+        this.id = id;
+    }
+
     public static List<Categoria> obtenerCategoriasJSON(String json)throws JSONException
     {
         List<Categoria> categorias=new ArrayList<Categoria>();
@@ -78,6 +90,7 @@ public class Categoria
             {
                 Categoria categoria=new Categoria();
                 JSONObject personaJson=arrayPersonas.getJSONObject(i);
+                categoria.id=personaJson.getInt("id");
                 categoria.nombre=personaJson.getString("titulo");
                 categoria.descripcion=personaJson.getString("desc");
                 categoria.foto=personaJson.getString("url_foto");
@@ -92,9 +105,34 @@ public class Categoria
         }
     }
 
+    /*public static Categoria obtenerCategoriaJSON(String json)throws JSONException
+    {
+        JSONObject objeto=new JSONObject(json);
+        if(!objeto.getBoolean("error"))
+        {
+            Categoria categoria=new Categoria();
+            categoria.id=objeto.getInt("id");
+            categoria.nombre=objeto.getString("titulo");
+            categoria.descripcion=objeto.getString("desc");
+            categoria.foto=objeto.getString("url_foto");
+            categoria.fav=false;
+            return categoria;
+        }
+        else
+        {
+            return null;
+        }
+    }*/
+
     public static boolean obtenerError(String json)throws JSONException
     {
         JSONObject objeto=new JSONObject(json);
         return objeto.getBoolean("error");
+    }
+
+    public static int obtenerId(String json)throws JSONException
+    {
+        JSONObject objeto=new JSONObject(json);
+        return objeto.getInt("categoria_id");
     }
 }

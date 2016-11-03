@@ -32,7 +32,7 @@ public class HiloLogin extends Thread
             Uri.Builder parametros=new Uri.Builder();
             parametros.appendQueryParameter("email", this.user);
             parametros.appendQueryParameter("password", this.pass);
-            byte[] datos=adm.enviarInformacion("http://lkdml.myq-see.com/login", parametros, null);
+            byte[] datos=adm.enviarInformacion("http://lkdml.myq-see.com/login", parametros, null, "POST");
             String json=new String(datos, "UTF-8");
             Message msg=new Message();
             msg.obj= Usuario.obtenerUsuarioJSON(json);

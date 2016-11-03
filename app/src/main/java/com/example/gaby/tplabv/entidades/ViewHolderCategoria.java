@@ -19,6 +19,7 @@ public class ViewHolderCategoria extends RecyclerView.ViewHolder// implements Vi
     private CheckBox chkFav;
     private ImageView imgFoto;
     private TextView tvIndice;
+    private TextView tvId;
     private Integer indice;
     public ViewHolderCategoria(View itemView)
     {
@@ -28,6 +29,7 @@ public class ViewHolderCategoria extends RecyclerView.ViewHolder// implements Vi
         this.chkFav=(CheckBox)itemView.findViewById(R.id.chkFav);
         this.imgFoto=(ImageView) itemView.findViewById(R.id.imgFoto);
         this.tvIndice=(TextView)itemView.findViewById(R.id.tvIndice);
+        this.tvId=(TextView)itemView.findViewById(R.id.tvId);
         //itemView.setOnClickListener(this);
     }
 
@@ -54,6 +56,11 @@ public class ViewHolderCategoria extends RecyclerView.ViewHolder// implements Vi
     public TextView getTvIndice()
     {
         return tvIndice;
+    }
+
+    public TextView getTvId()
+    {
+        return tvId;
     }
 
     public Integer getIndice()

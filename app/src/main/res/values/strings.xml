@@ -34,4 +34,9 @@
     <string name="msj_repass">La contraseña no coincide con su copia.</string>
     <string name="msj_login">El usuario o contraseña son incorrectos.</string>
     <string name="respuesta">Mensaje del servidor</string>
+    <string name="msj_server">Ha ocurrido un error con el servidor. Por favor, intente nuevamente más tarde.</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="advertencia">Advertencia</string>
+    <string name="msj_eliminar">¿Está seguro que desea eliminar esta categoría?</string>
 </resources>

@@ -47,6 +47,7 @@ public class ListaControlador implements View.OnClickListener, Handler.Callback
                 ViewHolderCategoria vhCategoria=new ViewHolderCategoria(v);
                 //vhCategoria.getAdapterPosition();
                 Intent intentCat=new Intent(act, CategoriaActivity.class);
+                intentCat.putExtra("id", Integer.parseInt(vhCategoria.getTvId().getText().toString()));
                 intentCat.putExtra("nombre", vhCategoria.getTvNombre().getText());
                 intentCat.putExtra("descripcion", vhCategoria.getTvDescripcion().getText());
                 intentCat.putExtra("favorita", vhCategoria.getChkFav().isChecked());
@@ -65,14 +66,22 @@ public class ListaControlador implements View.OnClickListener, Handler.Callback
         {
             Bundle extras=datos.getExtras();
             Integer indice=extras.getInt("indice", -1);
-            Categoria categoria=new Categoria(extras.getString("nombre", "Por defecto"), extras.getString("descripcion", "Por defecto"), extras.getBoolean("favorita", false), extras.getString("foto", null));
-            if(indice==-1)
+            String tipo=extras.getString("tipo", "error");
+            Categoria categoria=new Categoria(extras.getString("nombre", "Por defecto"), extras.getString("descripcion", "Por defecto"), extras.getBoolean("favorita", false), extras.getString("foto", null), extras.getInt("id", -1));
+            switch(tipo)
             {
-                this.modelo.getCategorias().add(categoria);
-            }
-            else
-            {
-                this.modelo.getCategorias().set(indice, categoria);
+                case "alta":
+                    this.modelo.getCategorias().add(categoria);
+                    break;
+                case "modificacion":
+                    this.modelo.getCategorias().set(indice, categoria);
+                    break;
+                case "baja":
+                    this.modelo.getCategorias().remove(indice);
+                    break;
+                case "error":
+                    Log.d("Error", "Ha ocurrido un error");
+                    break;
             }
             /*for(Categoria cate:this.modelo.getCategorias())
             {
@@ -84,7 +93,7 @@ public class ListaControlador implements View.OnClickListener, Handler.Callback
     public void cargarLista()
     {
         ArrayList<Categoria> categorias=new ArrayList<Categoria>();
-        categorias.add(new Categoria("Categoría 1", "cat1", true, null));
+        categorias.add(new Categoria("Categoría 1", "cat1", true, null, 2));
         modelo.setCategorias(categorias);//cargo una lista auxiliar para que no haga referencia a nulo al cargar el recycler view
         HiloLista hilo=new HiloLista(this.act.getIntent().getExtras().getString("key", ""), new Handler(this));
         hilo.start();

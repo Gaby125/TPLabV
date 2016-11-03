@@ -35,4 +35,9 @@
     <string name="msj_repass">The password does not match its copy.</string>
     <string name="msj_login">Invalid username or password.</string>
     <string name="respuesta">Server message</string>
+    <string name="msj_server">A server error has occurred. Please, try again later.</string>
+    <string name="eliminar">Delete</string>
+    <string name="cancelar">Cancel</string>
+    <string name="advertencia">Warning</string>
+    <string name="msj_eliminar">Are you sure you want to delete this category?</string>
 </resources>

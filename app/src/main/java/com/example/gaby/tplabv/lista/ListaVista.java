@@ -48,6 +48,7 @@ public class ListaVista extends RecyclerView.Adapter<ViewHolderCategoria>
     public void onBindViewHolder(ViewHolderCategoria holder, int position)
     {
         Categoria categoria=modelo.getCategorias().get(position);
+        holder.getTvId().setText(String.valueOf(categoria.getId()));
         holder.getTvNombre().setText(categoria.getNombre());
         holder.getTvDescripcion().setText(categoria.getDescripcion());
         holder.getChkFav().setChecked(categoria.getFav());
@@ -55,6 +56,10 @@ public class ListaVista extends RecyclerView.Adapter<ViewHolderCategoria>
         {
             holder.getImgFoto().setImageURI(Uri.parse(categoria.getFoto()));
             holder.getImgFoto().setTag(categoria.getFoto());
+        }
+        else
+        {
+            holder.getImgFoto().setImageResource(R.drawable.smile);
         }
         holder.getTvIndice().setText(String.valueOf(position));
         holder.setIndice(position);
