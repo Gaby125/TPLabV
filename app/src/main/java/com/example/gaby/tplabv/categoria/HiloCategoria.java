@@ -55,17 +55,33 @@ public class HiloCategoria extends Thread
             }
             byte[] datos=adm.enviarInformacion(url, parametros, this.key, metodo);
             String json=new String(datos, "UTF-8");
-            msg.obj= Categoria.obtenerError(json);
-            if(tipo.equals("alta"))
+            boolean error= Categoria.obtenerError(json);
+            byte[] categBytes;
+            if(!tipo.equals("baja"))
             {
-                msg.arg1=Categoria.obtenerId(json);
+                if(tipo.equals("alta"))
+                {
+                    msg.arg1=Categoria.obtenerId(json);
+                    categBytes=adm.obtenerInformacion(url+"/"+msg.arg1, this.key);
+                }
+                else
+                {
+                    categBytes=adm.obtenerInformacion(url+"/"+this.categoria.getId(), this.key);
+                }
+                String categJson=new String(categBytes, "UTF-8");
+                Categoria categ=Categoria.obtenerCategoriaJSON(categJson);
+                msg.obj=new Object[]{error, categ.getFoto()};
+            }
+            else
+            {
+                msg.obj=new Object[]{error, ""};
             }
             this.handler.sendMessage(msg);
         }
         catch(Exception e)
         {
             e.printStackTrace();
-            msg.obj=true;
+            msg.obj=new Object[]{true, ""};
             this.handler.sendMessage(msg);
         }
     }

@@ -132,10 +132,13 @@ public class CategoriaControlador implements View.OnClickListener, Handler.Callb
         {
             this.modelo.getCategoria().setId(msg.arg1);
         }
-        this.enviarDatos((boolean)msg.obj);
+        Object[] objetos=(Object[])msg.obj;
+        boolean error=(boolean)objetos[0];
+        String foto=(String)objetos[1];
+        this.enviarDatos(error, foto);
         return true;
     }
-    private void enviarDatos(boolean error)
+    private void enviarDatos(boolean error, String foto)
     {
         Intent intent=new Intent();
         if(!error)
@@ -144,7 +147,7 @@ public class CategoriaControlador implements View.OnClickListener, Handler.Callb
             intent.putExtra("nombre", this.modelo.getCategoria().getNombre());
             intent.putExtra("descripcion", this.modelo.getCategoria().getDescripcion());
             intent.putExtra("favorita", this.modelo.getCategoria().getFav());
-            intent.putExtra("foto", this.modelo.getCategoria().getFoto());
+            intent.putExtra("foto", foto);
             intent.putExtra("indice", this.modelo.getIndice());
             intent.putExtra("tipo", this.tipo);
             act.setResult(0, intent);

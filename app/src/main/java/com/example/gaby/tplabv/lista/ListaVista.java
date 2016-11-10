@@ -2,6 +2,7 @@ package com.example.gaby.tplabv.lista;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -52,10 +53,15 @@ public class ListaVista extends RecyclerView.Adapter<ViewHolderCategoria>
         holder.getTvNombre().setText(categoria.getNombre());
         holder.getTvDescripcion().setText(categoria.getDescripcion());
         holder.getChkFav().setChecked(categoria.getFav());
-        if(categoria.getFoto()!=null && !categoria.getFoto().equals("null"))
+        if(categoria.getFoto()!=null && !categoria.getFoto().equals("null") && !categoria.getCarga())
         {
-            holder.getImgFoto().setImageURI(Uri.parse(categoria.getFoto()));
+            HiloLista hilo=new HiloLista(null, new Handler(this.control));
             holder.getImgFoto().setTag(categoria.getFoto());
+            hilo.setImagen(holder.getImgFoto());
+            hilo.start();
+            categoria.setCarga(true);
+            /*holder.getImgFoto().setImageURI(Uri.parse(categoria.getFoto()));
+            holder.getImgFoto().setTag(categoria.getFoto());*/
         }
         else
         {

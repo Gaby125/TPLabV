@@ -17,8 +17,10 @@ public class Categoria
     private Boolean fav;
     private String foto;
     private Integer id;
+    private Boolean carga;
     public Categoria()
     {
+        this.carga=false;
     }
     public Categoria(String nombre, String descripcion, Boolean fav, String foto, Integer id)
     {
@@ -27,6 +29,7 @@ public class Categoria
         this.fav=fav;
         this.foto=foto;
         this.id=id;
+        this.carga=false;
     }
 
     public String getNombre()
@@ -79,6 +82,16 @@ public class Categoria
         this.id = id;
     }
 
+    public Boolean getCarga()
+    {
+        return carga;
+    }
+
+    public void setCarga(Boolean carga)
+    {
+        this.carga = carga;
+    }
+
     public static List<Categoria> obtenerCategoriasJSON(String json)throws JSONException
     {
         List<Categoria> categorias=new ArrayList<Categoria>();
@@ -105,7 +118,7 @@ public class Categoria
         }
     }
 
-    /*public static Categoria obtenerCategoriaJSON(String json)throws JSONException
+    public static Categoria obtenerCategoriaJSON(String json)throws JSONException
     {
         JSONObject objeto=new JSONObject(json);
         if(!objeto.getBoolean("error"))
@@ -122,7 +135,7 @@ public class Categoria
         {
             return null;
         }
-    }*/
+    }
 
     public static boolean obtenerError(String json)throws JSONException
     {
