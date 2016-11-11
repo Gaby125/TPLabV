@@ -3,6 +3,7 @@ package com.example.gaby.tplabv.lista;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 
 import com.example.gaby.tplabv.R;
 import com.example.gaby.tplabv.categoria.CategoriaActivity;
+import com.example.gaby.tplabv.categoria.CategoriaVista;
 import com.example.gaby.tplabv.entidades.Categoria;
 import com.example.gaby.tplabv.entidades.Constante;
 import com.example.gaby.tplabv.entidades.ViewHolderCategoria;
@@ -58,6 +60,7 @@ public class ListaControlador implements View.OnClickListener, Handler.Callback
                 intentCat.putExtra("favorita", vhCategoria.getChkFav().isChecked());
                 if(vhCategoria.getImgFoto().getTag()!=null)
                 {
+                    CategoriaVista.imagen=((BitmapDrawable)(vhCategoria.getImgFoto().getDrawable())).getBitmap();
                     intentCat.putExtra("foto", vhCategoria.getImgFoto().getTag().toString());
                 }
                 intentCat.putExtra("indice", this.buscarIndice(id));
@@ -92,11 +95,6 @@ public class ListaControlador implements View.OnClickListener, Handler.Callback
                     Log.d("Error", "Ha ocurrido un error");
                     break;
             }
-            /*for(Categoria cate:this.modelo.getCategorias())
-            {
-                Log.d("Indice", cate.
-            }*/
-            //this.vista.notifyDataSetChanged();
         }
     }
     public void cargarLista()

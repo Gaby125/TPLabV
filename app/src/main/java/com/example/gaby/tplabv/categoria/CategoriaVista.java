@@ -2,7 +2,7 @@ package com.example.gaby.tplabv.categoria;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +21,7 @@ import com.example.gaby.tplabv.entidades.Categoria;
  */
 public class CategoriaVista
 {
+    public static Bitmap imagen;
     private CategoriaModelo modelo;
     private EditText txtNombre;
     private EditText txtDescripcion;
@@ -60,34 +61,26 @@ public class CategoriaVista
             this.txtDescripcion.setText(extras.getString("descripcion", ""));
             this.chkFav.setChecked(extras.getBoolean("favorita", false));
             String foto=extras.getString("foto", null);
+            control.setFoto(foto);
             if(foto!=null)
             {
-                control.setUri(Uri.parse(foto));
-                this.imgCamara.setImageURI(Uri.parse(foto));
-            }
-            else
-            {
-                control.setUri(null);
+                this.imgCamara.setImageBitmap(imagen);
             }
             this.modelo.setIndice(extras.getInt("indice", 0));
             control.setTipo("modificacion");
         }
     }
-    public void actualizarModelo(Uri uri, Integer id)
+    public void actualizarModelo(String foto, Integer id)
     {
-        Categoria categoria=new Categoria(this.txtNombre.getText().toString(), this.txtDescripcion.getText().toString(), this.chkFav.isChecked(), null, id);
-        if(uri!=null)
-        {
-            categoria.setFoto(uri.toString());
-        }
+        Categoria categoria=new Categoria(this.txtNombre.getText().toString(), this.txtDescripcion.getText().toString(), this.chkFav.isChecked(), foto, id);
         this.modelo.setCategoria(categoria);
     }
     public boolean verificarCamposVacios()
     {
         return !(this.txtNombre.getText().toString().equals("") || this.txtDescripcion.getText().toString().equals(""));
     }
-    public void actualizarImagen(Uri uri)
+    public void actualizarImagen(Bitmap bitmap)
     {
-        this.imgCamara.setImageURI(uri);
+        this.imgCamara.setImageBitmap(bitmap);
     }
 }

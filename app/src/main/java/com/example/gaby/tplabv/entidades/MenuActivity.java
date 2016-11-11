@@ -31,6 +31,7 @@ public class MenuActivity extends AppCompatActivity
         {
             case R.id.categorias:
                 Intent i=new Intent(this, ListaActivity.class);
+                i.putExtra("key", this.getIntent().getExtras().getString("key", ""));
                 startActivity(i);
                 return true;
             case R.id.favoritos:

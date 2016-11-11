@@ -2,6 +2,7 @@ package com.example.gaby.tplabv.categoria;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,7 +35,9 @@ public class CategoriaActivity extends MenuActivity
     {
         if(resultCode==Activity.RESULT_OK)
         {
-            this.control.modificarImagen();
+            Bundle extras=data.getExtras();
+            Bitmap bitmap=(Bitmap)extras.get("data");
+            this.control.modificarImagen(bitmap);
         }
     }
 }

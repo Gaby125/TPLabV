@@ -3,7 +3,7 @@ package com.example.gaby.tplabv.categoria;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -29,7 +29,7 @@ public class CategoriaControlador implements View.OnClickListener, Handler.Callb
     private CategoriaVista vista;
     private Activity act;
     private String tipo;
-    private Uri uri;
+    private String foto;
     private Integer id;
     public CategoriaControlador(CategoriaModelo modelo, Activity act)
     {
@@ -48,9 +48,9 @@ public class CategoriaControlador implements View.OnClickListener, Handler.Callb
         this.tipo = tipo;
     }
 
-    public void setUri(Uri uri)
+    public void setFoto(String foto)
     {
-        this.uri = uri;
+        this.foto = foto;
     }
 
     public void setId(Integer id)
@@ -76,11 +76,6 @@ public class CategoriaControlador implements View.OnClickListener, Handler.Callb
                 }
             case R.id.btnCamara:
                 Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File dir=new File(Environment.getExternalStorageDirectory(), "imagenDir");
-                dir.mkdirs();
-                File img=new File(dir, "imagen.jpg");
-                this.uri= Uri.fromFile(img);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                 this.act.startActivityForResult(intent, 2);
                 break;
             case R.id.btnEliminar:
@@ -110,7 +105,7 @@ public class CategoriaControlador implements View.OnClickListener, Handler.Callb
 
     private void iniciarHilo()
     {
-        this.vista.actualizarModelo(this.uri, this.id);
+        this.vista.actualizarModelo(this.foto, this.id);
         HiloCategoria hilo=new HiloCategoria(this.modelo.getCategoria(), act.getIntent().getExtras().getString("key"), new Handler(this), this.tipo);
         hilo.start();
     }
@@ -158,8 +153,8 @@ public class CategoriaControlador implements View.OnClickListener, Handler.Callb
             this.generarDialogo(act.getString(R.string.error), act.getString(R.string.msj_server));
         }
     }
-    public void modificarImagen()
+    public void modificarImagen(Bitmap bitmap)
     {
-        this.vista.actualizarImagen(this.uri);
+        this.vista.actualizarImagen(bitmap);
     }
 }
